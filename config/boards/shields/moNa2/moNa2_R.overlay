@@ -1,5 +1,6 @@
 #include "moNa2.dtsi"
 #include <input/processors.dtsi>
+#include <dt-bindings/zmk/input_transform.h>
 
 &default_transform {
     col-offset = <6>;
@@ -21,6 +22,12 @@
         device = <&trackball>;
         input-processors = <&zip_temp_layer 6 10000>;
         
+        scroller {
+            input-processors = <
+                &zip_xy_to_scroll_mapper
+                &zip_scroll_transform INPUT_TRANSFORM_XY_SWAP
+            >;
+        };
 
     };
 };
