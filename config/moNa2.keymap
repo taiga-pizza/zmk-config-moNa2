@@ -13,7 +13,14 @@
 };
 
 / {
-    combos { compatible = "zmk,combos"; };
+    combos {
+        compatible = "zmk,combos";
+
+        test {
+            bindings = <&none>;
+            key-positions = <17 19 29 31>;
+        };
+    };
 
     macros {
         to_layer_0: to_layer_0 {
