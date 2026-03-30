@@ -1,4 +1,5 @@
 #include "moNa2.dtsi"
+#include <input/processors.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -18,6 +19,8 @@
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        input-processors = <&zip_temp_layer 6 10000>;
+        
 
     };
 };
@@ -55,10 +58,28 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        automouse-layer = <5>;
+        // automouse-layer = <5>;  // Input Processorを使用するため、zmk-pmw3610-driverのAMLは無効化
         scroll-layers = <6>;
 
     };
 };
 
+// 非マウスキーを押したらタイムアウトに関係なくマウスレイヤーを抜ける
+&zip_temp_layer {
+    excluded-positions = <
+        17  // J
+        19  // L
+        29  // M
+        31  // .
+    >;
+};
 
+// マウスキーを押したらタイムアウトを延長する
+&mkp_input_listener {
+    input-processors = <&zip_temp_layer 6 10000>;
+};
+
+// キー入力中のオートマウスレイヤー誤爆防止
+&zip_temp_layer {
+    require-prior-idle-ms = <200>;
+};
