@@ -12,6 +12,11 @@
     quick-tap-ms = <0>;
 };
 
+// マウスキーを押したらタイムアウトを延長する
+&mkp_input_listener {
+    input-processors = <&zip_temp_layer 6 10000>;
+};
+
 / {
     combos {
         compatible = "zmk,combos";

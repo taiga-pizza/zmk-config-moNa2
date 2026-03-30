@@ -81,11 +81,6 @@
     >;
 };
 
-// マウスキーを押したらタイムアウトを延長する
-&mkp_input_listener {
-    input-processors = <&zip_temp_layer 6 10000>;
-};
-
 // キー入力中のオートマウスレイヤー誤爆防止
 &zip_temp_layer {
     require-prior-idle-ms = <200>;
