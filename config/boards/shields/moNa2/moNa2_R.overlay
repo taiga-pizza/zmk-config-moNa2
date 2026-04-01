@@ -47,7 +47,7 @@
             track-remainders;
         };
     };
-    
+
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
@@ -70,7 +70,7 @@
         };
 
         horizontal_scroller {
-            layers = <6>;
+            layers = <7>;
             input-processors = <
                 &zip_xy_to_scroll_mapper
                 &zip_scroll_scaler 1 10  // スクロール速度調整
