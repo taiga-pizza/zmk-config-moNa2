@@ -22,13 +22,13 @@
         device = <&trackball>;
         input-processors = <&zip_temp_layer 5 10000>;
         
-        // scroller {
-        //     layers = <6>;
-        //     input-processors = <
-        //         &zip_xy_to_scroll_mapper
-        //         &zip_scroll_transform INPUT_TRANSFORM_XY_SWAP
-        //     >;
-        // };
+        scroller {
+            layers = <6>;
+            input-processors = <
+                &zip_xy_to_scroll_mapper
+                &zip_scroll_transform INPUT_TRANSFORM_XY_SWAP
+            >;
+        };
 
     };
 };
