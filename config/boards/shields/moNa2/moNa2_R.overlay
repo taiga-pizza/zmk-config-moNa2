@@ -27,13 +27,13 @@
             &zip_xy_transform INPUT_TRANSFORM_Y_INVERT  // カーソル移動のY方向を反転する
         >;
         
-        // scroller {
-        //     layers = <6>;
-        //     input-processors = <
-        //         &zip_xy_to_scroll_mapper
-        //         &zip_scroll_transform INPUT_TRANSFORM_XY_SWAP
-        //     >;
-        // };
+        scroller {
+            layers = <6>;
+            input-processors = <
+                &zip_xy_to_scroll_mapper
+                &zip_scroll_transform INPUT_TRANSFORM_XY_SWAP  // スクロールのXとYを入れ替える
+            >;
+        };
 
     };
 };
@@ -72,7 +72,7 @@
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         // automouse-layer = <5>;  // Input Processorを使用するため、zmk-pmw3610-driverのAMLは無効化
-        scroll-layers = <6>;
+        // scroll-layers = <6>;  // Input Processorを使用するため、zmk-pmw3610-driverの設定は無効化
 
     };
 };
