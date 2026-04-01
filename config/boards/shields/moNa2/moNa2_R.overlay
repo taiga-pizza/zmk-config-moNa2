@@ -1,8 +1,7 @@
 #include <behaviors/input_gestures_accel.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
-#include <input/processors.dtsi>
 #include "moNa2.dtsi"
-#include <scroll-snap.dtsi>
+#include <input/processors.dtsi>
 
 &default_transform {
     col-offset = <6>;
@@ -47,7 +46,6 @@
                 &zip_xy_to_scroll_mapper
                 &zip_scroll_scaler 1 6  // スクロール速度調整
                 &zip_scroll_transform INPUT_TRANSFORM_XY_SWAP  // スクロールのXとYを入れ替える
-                &zip_scroll_snap  // スクロール方向を自動で縦方向/横方向にロックする
             >;
         };
 
