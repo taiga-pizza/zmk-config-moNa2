@@ -63,7 +63,7 @@
             layers = <6>;
             input-processors = <
                 &zip_xy_to_scroll_mapper
-                &zip_scroll_scaler 1 10  // スクロール速度調整
+                &zip_scroll_scaler 1 14  // スクロール速度調整
                 &zip_scroll_transform INPUT_TRANSFORM_XY_SWAP  // スクロールのXとYを入れ替える
                 &zip_scroll_transform INPUT_TRANSFORM_Y_INVERT  // スクロールのY方向を反転する
                 &zip_scroll_x_scaler 0 1  // スクロールを縦方向に限定する
@@ -74,7 +74,7 @@
             layers = <7>;
             input-processors = <
                 &zip_xy_to_scroll_mapper
-                &zip_scroll_scaler 1 10  // スクロール速度調整
+                &zip_scroll_scaler 1 14  // スクロール速度調整
                 &zip_scroll_transform INPUT_TRANSFORM_X_INVERT  // スクロールのX方向を反転する
                 &zip_scroll_y_scaler 0 1  // スクロールを横方向に限定する
             >;
