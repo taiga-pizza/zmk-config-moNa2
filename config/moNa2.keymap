@@ -25,6 +25,11 @@
             bindings = <&kp TAB>;
             key-positions = <17 18>;
         };
+
+        esc {
+            bindings = <&kp ESCAPE>;
+            key-positions = <13 12>;
+        };
     };
 
     macros {
