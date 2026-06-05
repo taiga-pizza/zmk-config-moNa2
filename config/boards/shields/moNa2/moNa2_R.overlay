@@ -133,8 +133,6 @@
             &zip_xy_transform INPUT_TRANSFORM_Y_INVERT  // カーソル移動のY方向を反転する
         >;
 
-        // レイヤー0は常に有効なため、layers=<0> の override は使わない。
-        // 数値の大きい／具体的なレイヤーを先に宣言する。
         gesture_layer_8 {
             layers = <8>;
             process-next;
