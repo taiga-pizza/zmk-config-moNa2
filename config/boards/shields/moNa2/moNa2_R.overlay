@@ -138,6 +138,7 @@
 
         gesture_layer_8 {
             layers = <8>;
+            process-next;
             input-processors = <
                 &zip_xy_transform INPUT_TRANSFORM_X_INVERT
                 &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
@@ -147,11 +148,20 @@
 
         gesture_layer_9 {
             layers = <9>;
+            process-next;
             input-processors = <
                 &zip_xy_transform INPUT_TRANSFORM_X_INVERT
                 &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
                 &zip_mouse_gesture_tab
             >;
+        };
+
+        // ジェスチャーの suppress-movement だけではカーソル移動が残ることがあるため、
+        // process-next 経由で X/Y を 0 倍し、レイヤー8・9 ではポインタ移動を止める
+        // （ZMK #2967 / kot149 氏の回避策）
+        gesture_prevent_move {
+            layers = <8 9>;
+            input-processors = <&zip_xy_scaler 0 1>;
         };
 
         vertical_scroller {

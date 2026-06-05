@@ -36,7 +36,7 @@
 
         gesture_win {
             bindings = <&mo 8>;
-            key-positions = <19 20>;
+            key-positions = <18 19>;
         };
     };
 
