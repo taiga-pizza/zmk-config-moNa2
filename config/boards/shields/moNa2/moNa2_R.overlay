@@ -31,6 +31,36 @@
     acceleration-exponent = <2>;  // Quadratic acceleration curve
 };
 
+/ {
+    input_processors {
+        zip_mouse_gesture_win: zip_mouse_gesture {
+            compatible = "zmk,input-processor-mouse-gesture";
+            #input-processor-cells = <0>;
+        };
+
+        zip_mouse_gesture_tab: zip_mouse_gesture {
+            compatible = "zmk,input-processor-mouse-gesture";
+            #input-processor-cells = <0>;
+        };
+
+        zip_scroll_x_scaler: zip_scroll_x_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_HWHEEL>;
+            track-remainders;
+        };
+
+        zip_scroll_y_scaler: zip_scroll_y_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_WHEEL>;
+            track-remainders;
+        };
+    };
+};
+
 // レイヤー8: Win: 上/左/右  ブラウザ: 下（タブ復元）（常時ジェスチャーモード）
 &zip_mouse_gesture_win {
     stroke-size = <300>;
@@ -98,34 +128,6 @@
 };
 
 / {
-    input_processors {
-        zip_mouse_gesture_win: zip_mouse_gesture {
-            compatible = "zmk,input-processor-mouse-gesture";
-            #input-processor-cells = <0>;
-        };
-
-        zip_mouse_gesture_tab: zip_mouse_gesture {
-            compatible = "zmk,input-processor-mouse-gesture";
-            #input-processor-cells = <0>;
-        };
-
-        zip_scroll_x_scaler: zip_scroll_x_scaler {
-            compatible = "zmk,input-processor-scaler";
-            #input-processor-cells = <2>;
-            type = <INPUT_EV_REL>;
-            codes = <INPUT_REL_HWHEEL>;
-            track-remainders;
-        };
-
-        zip_scroll_y_scaler: zip_scroll_y_scaler {
-            compatible = "zmk,input-processor-scaler";
-            #input-processor-cells = <2>;
-            type = <INPUT_EV_REL>;
-            codes = <INPUT_REL_WHEEL>;
-            track-remainders;
-        };
-    };
-
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
