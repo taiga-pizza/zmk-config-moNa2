@@ -38,10 +38,11 @@
         zip_mouse_gesture_win: zip_mouse_gesture_win {
             compatible = "zmk,input-processor-mouse-gesture";
             #input-processor-cells = <0>;
-            stroke-size = <300>;
+            stroke-size = <30>;
             enable-eager-mode;
             suppress-movement;
             always-active;
+            idle-timeout-ms = <100>;
             gesture-cooldown-ms = <120>;
 
             // 上: アプリビュー（Win+Tab）
@@ -73,10 +74,11 @@
         zip_mouse_gesture_tab: zip_mouse_gesture_tab {
             compatible = "zmk,input-processor-mouse-gesture";
             #input-processor-cells = <0>;
-            stroke-size = <300>;
+            stroke-size = <30>;
             enable-eager-mode;
             suppress-movement;
             always-active;
+            idle-timeout-ms = <100>;
             gesture-cooldown-ms = <120>;
 
             // 上: タブを作成（Ctrl+T）
@@ -136,13 +138,11 @@
 
         gesture_layer_8 {
             layers = <8>;
-            process-next;
             input-processors = <&zip_mouse_gesture_win>;
         };
 
         gesture_layer_9 {
             layers = <9>;
-            process-next;
             input-processors = <&zip_mouse_gesture_tab>;
         };
 
