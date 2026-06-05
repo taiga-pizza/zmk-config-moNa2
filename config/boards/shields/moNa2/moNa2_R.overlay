@@ -31,8 +31,7 @@
     acceleration-exponent = <2>;  // Quadratic acceleration curve
 };
 
-// レイヤー8: Windows 操作（常時ジェスチャーモード）
-// 有効化: L + SQT コンボ
+// レイヤー8: Win: 上/左/右  ブラウザ: 下（タブ復元）（常時ジェスチャーモード）
 &zip_mouse_gesture_win {
     stroke-size = <300>;
     enable-eager-mode;
@@ -57,10 +56,15 @@
         pattern = <GESTURE_RIGHT>;
         bindings = <&kp LG(LC(RIGHT))>;
     };
+
+    // 下: タブを復元（Ctrl+Shift+T）
+    gesture_down {
+        pattern = <GESTURE_DOWN>;
+        bindings = <&kp LC(LS(T))>;
+    };
 };
 
 // レイヤー9: タブ操作（常時ジェスチャーモード）
-// 有効化: L 長押し
 &zip_mouse_gesture_tab {
     stroke-size = <300>;
     enable-eager-mode;
