@@ -24,5 +24,8 @@ manifest:
     - name: zmk-pointing-acceleration
       remote: oleksandrmaslov
       revision: main
+    - name: zmk-mouse-gesture
+      remote: kot149
+      revision: v1
   self:
     path: config

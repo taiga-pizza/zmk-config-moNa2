@@ -1,5 +1,7 @@
 #include <behaviors/input_gestures_accel.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
+#include <dt-bindings/zmk/mouse-gesture.h>
+#include <mouse-gesture.dtsi>
 #include "moNa2.dtsi"
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -29,8 +31,80 @@
     acceleration-exponent = <2>;  // Quadratic acceleration curve
 };
 
+// レイヤー8: Windows 操作（常時ジェスチャーモード）
+// 有効化: L + SQT コンボ
+&zip_mouse_gesture_win {
+    stroke-size = <300>;
+    enable-eager-mode;
+    suppress-movement;
+    always-active;
+    gesture-cooldown-ms = <120>;
+
+    // 上: アプリビュー（Win+Tab）
+    gesture_up {
+        pattern = <GESTURE_UP>;
+        bindings = <&kp LG(TAB)>;
+    };
+
+    // 左: 仮想デスクトップを左へ（Win+Ctrl+←）
+    gesture_left {
+        pattern = <GESTURE_LEFT>;
+        bindings = <&kp LG(LC(LEFT))>;
+    };
+
+    // 右: 仮想デスクトップを右へ（Win+Ctrl+→）
+    gesture_right {
+        pattern = <GESTURE_RIGHT>;
+        bindings = <&kp LG(LC(RIGHT))>;
+    };
+};
+
+// レイヤー9: タブ操作（常時ジェスチャーモード）
+// 有効化: L 長押し
+&zip_mouse_gesture_tab {
+    stroke-size = <300>;
+    enable-eager-mode;
+    suppress-movement;
+    always-active;
+    gesture-cooldown-ms = <120>;
+
+    // 上: タブを作成（Ctrl+T）
+    gesture_up {
+        pattern = <GESTURE_UP>;
+        bindings = <&kp LC(T)>;
+    };
+
+    // 下: タブを削除（Ctrl+W）
+    gesture_down {
+        pattern = <GESTURE_DOWN>;
+        bindings = <&kp LC(W)>;
+    };
+
+    // 左: 前のタブへ（Ctrl+Shift+Tab）
+    gesture_left {
+        pattern = <GESTURE_LEFT>;
+        bindings = <&kp LC(LS(TAB))>;
+    };
+
+    // 右: 次のタブへ（Ctrl+Tab）
+    gesture_right {
+        pattern = <GESTURE_RIGHT>;
+        bindings = <&kp LC(TAB)>;
+    };
+};
+
 / {
     input_processors {
+        zip_mouse_gesture_win: zip_mouse_gesture {
+            compatible = "zmk,input-processor-mouse-gesture";
+            #input-processor-cells = <0>;
+        };
+
+        zip_mouse_gesture_tab: zip_mouse_gesture {
+            compatible = "zmk,input-processor-mouse-gesture";
+            #input-processor-cells = <0>;
+        };
+
         zip_scroll_x_scaler: zip_scroll_x_scaler {
             compatible = "zmk,input-processor-scaler";
             #input-processor-cells = <2>;
@@ -58,7 +132,21 @@
             &zip_xy_transform INPUT_TRANSFORM_X_INVERT  // カーソル移動のX方向を反転する
             &zip_xy_transform INPUT_TRANSFORM_Y_INVERT  // カーソル移動のY方向を反転する
         >;
-        
+
+        // レイヤー0は常に有効なため、layers=<0> の override は使わない。
+        // 数値の大きい／具体的なレイヤーを先に宣言する。
+        gesture_layer_8 {
+            layers = <8>;
+            process-next;
+            input-processors = <&zip_mouse_gesture_win>;
+        };
+
+        gesture_layer_9 {
+            layers = <9>;
+            process-next;
+            input-processors = <&zip_mouse_gesture_tab>;
+        };
+
         vertical_scroller {
             layers = <6>;
             input-processors = <
