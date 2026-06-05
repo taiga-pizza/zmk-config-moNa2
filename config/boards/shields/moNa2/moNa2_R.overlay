@@ -138,12 +138,20 @@
 
         gesture_layer_8 {
             layers = <8>;
-            input-processors = <&zip_mouse_gesture_win>;
+            input-processors = <
+                &zip_xy_transform INPUT_TRANSFORM_X_INVERT
+                &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
+                &zip_mouse_gesture_win
+            >;
         };
 
         gesture_layer_9 {
             layers = <9>;
-            input-processors = <&zip_mouse_gesture_tab>;
+            input-processors = <
+                &zip_xy_transform INPUT_TRANSFORM_X_INVERT
+                &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
+                &zip_mouse_gesture_tab
+            >;
         };
 
         vertical_scroller {
