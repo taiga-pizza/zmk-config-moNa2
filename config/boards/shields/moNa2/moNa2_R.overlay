@@ -33,14 +33,74 @@
 
 / {
     input_processors {
-        zip_mouse_gesture_win: zip_mouse_gesture {
+        // レイヤー8: Win: 上/左/右  ブラウザ: 下（タブ復元）（常時ジェスチャーモード）
+        zip_mouse_gesture_win: zip_mouse_gesture_win {
             compatible = "zmk,input-processor-mouse-gesture";
             #input-processor-cells = <0>;
+            stroke-size = <300>;
+            enable-eager-mode;
+            suppress-movement;
+            always-active;
+            gesture-cooldown-ms = <120>;
+
+            // 上: アプリビュー（Win+Tab）
+            gesture_up {
+                pattern = <GESTURE_UP>;
+                bindings = <&kp LG(TAB)>;
+            };
+
+            // 左: 仮想デスクトップを左へ（Win+Ctrl+←）
+            gesture_left {
+                pattern = <GESTURE_LEFT>;
+                bindings = <&kp LG(LC(LEFT))>;
+            };
+
+            // 右: 仮想デスクトップを右へ（Win+Ctrl+→）
+            gesture_right {
+                pattern = <GESTURE_RIGHT>;
+                bindings = <&kp LG(LC(RIGHT))>;
+            };
+
+            // 下: タブを復元（Ctrl+Shift+T）
+            gesture_down {
+                pattern = <GESTURE_DOWN>;
+                bindings = <&kp LC(LS(T))>;
+            };
         };
 
-        zip_mouse_gesture_tab: zip_mouse_gesture {
+        // レイヤー9: タブ操作（常時ジェスチャーモード）
+        zip_mouse_gesture_tab: zip_mouse_gesture_tab {
             compatible = "zmk,input-processor-mouse-gesture";
             #input-processor-cells = <0>;
+            stroke-size = <300>;
+            enable-eager-mode;
+            suppress-movement;
+            always-active;
+            gesture-cooldown-ms = <120>;
+
+            // 上: タブを作成（Ctrl+T）
+            gesture_up {
+                pattern = <GESTURE_UP>;
+                bindings = <&kp LC(T)>;
+            };
+
+            // 下: タブを削除（Ctrl+W）
+            gesture_down {
+                pattern = <GESTURE_DOWN>;
+                bindings = <&kp LC(W)>;
+            };
+
+            // 左: 前のタブへ（Ctrl+Shift+Tab）
+            gesture_left {
+                pattern = <GESTURE_LEFT>;
+                bindings = <&kp LC(LS(TAB))>;
+            };
+
+            // 右: 次のタブへ（Ctrl+Tab）
+            gesture_right {
+                pattern = <GESTURE_RIGHT>;
+                bindings = <&kp LC(TAB)>;
+            };
         };
 
         zip_scroll_x_scaler: zip_scroll_x_scaler {
@@ -58,72 +118,6 @@
             codes = <INPUT_REL_WHEEL>;
             track-remainders;
         };
-    };
-};
-
-// レイヤー8: Win: 上/左/右  ブラウザ: 下（タブ復元）（常時ジェスチャーモード）
-&zip_mouse_gesture_win {
-    stroke-size = <300>;
-    enable-eager-mode;
-    suppress-movement;
-    always-active;
-    gesture-cooldown-ms = <120>;
-
-    // 上: アプリビュー（Win+Tab）
-    gesture_up {
-        pattern = <GESTURE_UP>;
-        bindings = <&kp LG(TAB)>;
-    };
-
-    // 左: 仮想デスクトップを左へ（Win+Ctrl+←）
-    gesture_left {
-        pattern = <GESTURE_LEFT>;
-        bindings = <&kp LG(LC(LEFT))>;
-    };
-
-    // 右: 仮想デスクトップを右へ（Win+Ctrl+→）
-    gesture_right {
-        pattern = <GESTURE_RIGHT>;
-        bindings = <&kp LG(LC(RIGHT))>;
-    };
-
-    // 下: タブを復元（Ctrl+Shift+T）
-    gesture_down {
-        pattern = <GESTURE_DOWN>;
-        bindings = <&kp LC(LS(T))>;
-    };
-};
-
-// レイヤー9: タブ操作（常時ジェスチャーモード）
-&zip_mouse_gesture_tab {
-    stroke-size = <300>;
-    enable-eager-mode;
-    suppress-movement;
-    always-active;
-    gesture-cooldown-ms = <120>;
-
-    // 上: タブを作成（Ctrl+T）
-    gesture_up {
-        pattern = <GESTURE_UP>;
-        bindings = <&kp LC(T)>;
-    };
-
-    // 下: タブを削除（Ctrl+W）
-    gesture_down {
-        pattern = <GESTURE_DOWN>;
-        bindings = <&kp LC(W)>;
-    };
-
-    // 左: 前のタブへ（Ctrl+Shift+Tab）
-    gesture_left {
-        pattern = <GESTURE_LEFT>;
-        bindings = <&kp LC(LS(TAB))>;
-    };
-
-    // 右: 次のタブへ（Ctrl+Tab）
-    gesture_right {
-        pattern = <GESTURE_RIGHT>;
-        bindings = <&kp LC(TAB)>;
     };
 };
 
