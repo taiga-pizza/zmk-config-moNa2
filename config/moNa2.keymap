@@ -14,6 +14,7 @@
 &mt {
     flavor = "balanced";
     quick-tap-ms = <0>;
+    tapping-term-ms = <150>;
 };
 
 // マウスキーを押したらタイムアウトを延長する
@@ -56,7 +57,7 @@
             bindings = <&mo>, <&to_layer_0>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <150>;
         };
 
         scroll_up_down: behavior_sensor_rotate_mouse_wheel_up_down {
