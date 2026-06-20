@@ -17,9 +17,7 @@
     tapping-term-ms = <160>;
 };
 
-&lt {
-    tapping-term-ms = <160>;
-};
+&lt { tapping-term-ms = <160>; };
 
 // マウスキーを押したらタイムアウトを延長する
 
@@ -100,10 +98,10 @@
 
         layer_2 {
             bindings = <
-&kp GRAVE        &trans       &trans    &trans    &trans                       &trans     &trans    &trans         &kp MINUS             &kp EQUAL
-&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DLLR  &kp PRCNT            &trans  &kp CARET  &kp AMPS  &kp ASTRK      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
-&trans           &trans       &trans    &trans    &trans     &trans    &trans  &trans     &trans    &kp SEMICOLON  &kp LEFT_BRACKET      &kp RIGHT_BRACKET
-&trans           &trans       &trans    &trans    &trans     &trans    &trans  &trans                                                    &kp NON_US_BACKSLASH
+&kp GRAVE        &trans       &trans    &trans    &trans                           &trans     &trans    &trans         &kp MINUS             &kp EQUAL
+&kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DLLR  &kp PRCNT            &trans      &kp CARET  &kp AMPS  &kp ASTRK      &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+&trans           &trans       &trans    &trans    &trans     &trans    &trans      &trans     &trans    &kp SEMICOLON  &kp LEFT_BRACKET      &kp RIGHT_BRACKET
+&trans           &trans       &trans    &trans    &trans     &trans    &kp DELETE  &trans                                                    &kp NON_US_BACKSLASH
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
