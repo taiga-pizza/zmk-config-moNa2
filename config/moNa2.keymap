@@ -50,6 +50,18 @@
             bindings = <&to 0 &macro_param_1to1 &kp MACRO_PLACEHOLDER>;
             label = "TO_LAYER_0";
         };
+
+        maximize: maximize {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_tap &kp LA(SPACE)>
+                , <&macro_wait_time 80>
+                , <&macro_tap &kp X>;
+            label = "MAXIMIZE";
+        };
     };
 
     behaviors {
@@ -111,7 +123,7 @@
             bindings = <
 &kp LG(LEFT_ARROW)  &kp LC(LS(TAB))         &kp UP_ARROW      &kp LC(TAB)              &kp LG(RIGHT_ARROW)                    &trans  &trans  &trans  &trans  &trans
 &kp HOME            &kp LEFT_ARROW          &kp DOWN_ARROW    &kp RIGHT_ARROW          &kp END                        &trans  &trans  &trans  &trans  &trans  &trans
-&kp LEFT_SHIFT      &kp LG(LS(LEFT_ARROW))  &kp LG(UP_ARROW)  &kp LG(LS(RIGHT_ARROW))  &trans               &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&kp LEFT_SHIFT      &kp LG(LS(LEFT_ARROW))  &maximize         &kp LG(LS(RIGHT_ARROW))  &trans               &trans    &trans  &trans  &trans  &trans  &trans  &trans
 &trans              &trans                  &trans            &trans                   &trans               &trans    &trans  &trans                          &trans
             >;
 
